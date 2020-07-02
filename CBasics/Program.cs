@@ -10,6 +10,8 @@ namespace CBasics
     {
         static void Main(string[] args)
         {
+
+            Console.WriteLine("Testing");
         }
     }
 }
