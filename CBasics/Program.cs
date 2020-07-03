@@ -9,43 +9,60 @@ namespace CBasics
         static void Main(string[] args)
         {
 
-            for (var i = 1; i <= 10; i++)
+            var random = new Random();
+            Console.WriteLine(random.Next());
+
+            var randomNumber = new Random().Next(1, 10);
+            Console.WriteLine(randomNumber);
+            Console.WriteLine((int)'a');
+
+            var randomLetter = new Random();
+            for (var i = 0; i <= 6; i++)
             {
-                if(i%2 == 0)
+                Console.Write((char)('a' + randomLetter.Next(0, 26)));
+            }
+            Console.WriteLine();
+
+            const int passwordLength = 6;
+            var buffer = new char[passwordLength];
+            for (var x = 0; x < passwordLength; x++)
+            {
+                buffer[x] = (char)('a' + randomLetter.Next(0, 26));
+                var password = new string(buffer);
+                if (x == 4)
                 {
-                    Console.WriteLine(i);
+                    Console.Write("Your password is {0}", password);
+                }
+            }
+            Console.WriteLine();
+
+            t1
+            for (var n = 0; n <= 100; n++)
+            {
+                if (n % 3 == 0)
+                {
+                    Console.WriteLine(n);
                 }
             }
 
-            var name = "Something here";
-            foreach (var item in name)
-            {
-                Console.WriteLine(item);
-            }
-
-            var names = new string[3] { "Dan", "Simon", "Frank" };
-            foreach (var person in names)
-            {
-                Console.WriteLine(person);
-            }
-
-
-            var x = 0;
-            while(x < 10)
-            {
-                Console.WriteLine(x);
-                x++;
-            }
-
+            //t2
+            var total = 0;
             while (true)
             {
-                Console.Write("Enter your name: ");
+                Console.WriteLine("Enter a number or \"Ok\" to exit");
                 var input = Console.ReadLine();
-
-                if (!String.IsNullOrWhiteSpace(input)) { 
+                if(input == "ok")
+                {
+                    Console.Write("Your total is {0}", total);
                     break;
                 }
+                total += Int16.Parse(input);
             }
+            Console.WriteLine();
+
+            //t3
+            
+
         }   
     }
 }
