@@ -1,5 +1,7 @@
 ﻿
 using System;
+using System.Collections.Generic;
+using System.Xml.Schema;
 
 namespace CBasics
 {
@@ -7,40 +9,48 @@ namespace CBasics
     {
         static void Main(string[] args)
         {
-            //DateTime display
-            var dateTime = new DateTime(2020, 07, 07);
-            var now = DateTime.Now;
-            var today = DateTime.Today;
 
-            Console.WriteLine("Hour: " + now.Hour);
-            Console.WriteLine("Minute: " + now.Minute);
+            //Strings
+            var name = "Jonathon Parker";
+            //Console.WriteLine(name.ToUpper());
 
-            var tomorrow = now.AddDays(1);
-            var yesterday = now.AddDays(-1);
-            var twentyMintuesAgo = now.AddMinutes(-20);
+            var index = name.IndexOf(' ');
+            var firstName = name.Substring(0, index);
+            var surname = name.Substring(index + 1);
+            Console.WriteLine(firstName);
+            Console.WriteLine(surname);
 
-            Console.WriteLine(twentyMintuesAgo);
-            Console.WriteLine(now.ToLongDateString());
-            Console.WriteLine(now.ToShortDateString());
-            Console.WriteLine(now.ToString("yy-MM-dd HH:mm"));
+            //Split
+            var fullName = name.Split(' ');
+            Console.WriteLine(fullName[0]);
+            Console.WriteLine(fullName[1]);
 
-            //Time Span
+            //Returns a new string, not the original
+            //Console.WriteLine(name.Replace('P', 'H'));
 
-            var timeSpan = new TimeSpan(1, 2, 3);
-            var timeSpan2 = TimeSpan.FromHours(1);
+            //Console.WriteLine("Enter your name: ");
+            //var input = Console.ReadLine();
 
-            var start = DateTime.Now;
-            var end = DateTime.Now.AddMinutes(5);
-            var duration = end - start;
-            Console.WriteLine("Duration: " + duration);
+            //if (String.IsNullOrWhiteSpace(input))
+            //{
+            //    Console.WriteLine("Input not valid");
+            //} else
+            //{
+            //    Console.WriteLine("Ok");
+            //}
 
-            //Add
-            Console.WriteLine("Add Example: " + timeSpan.Add(TimeSpan.FromMinutes(8)));
-            //Subtract
-            Console.WriteLine("Add Example: " + timeSpan.Subtract(TimeSpan.FromMinutes(8)
-            Console.WriteLine("ToString" + timeSpan);
+            //ToString
+            float price = 28.77f;
+            Console.WriteLine("Price: {0}", price.ToString("C"));
+
+            var sentence = "A very long A very long sentence that is to be summarised";
+            var summary = StringUtility.SummerizeText(sentence, 27);
+            Console.WriteLine(summary);
         }
+
+
+        
     }
 }
- 
-    
+
+
