@@ -1,6 +1,7 @@
 ﻿
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 
@@ -10,73 +11,29 @@ namespace CBasics
     {
         static void Main(string[] args)
         {
-            //Procedural Programming
-            //Console.WriteLine("What's your name?:");
-            //var name = Console.ReadLine();
-            //var reversedName = reverseName(name);
-            //Console.WriteLine(reversedName);
-
-            //Console.WriteLine("Add numbers seperated by hyphen");
-            //var input = Console.ReadLine();
-            //var numbers = isConsecutive(input);
-            //Console.WriteLine(numbers);
-
-
-            Console.WriteLine("Enter numbers seperated by commas");
-            var numberList = Console.ReadLine();
-            if (String.IsNullOrWhiteSpace(numberList))
+            //File methods - check user security settings before each operations, slower if doing lots of operations
+            var path = "Somefilename path";
+            File.Copy(path, path, true);
+            File.Delete(path);
+            if (File.Exists(path))
             {
-                Console.WriteLine("Not valid");
-            } else
+                //Do something
+            }
+            var content = File.ReadAllText(path);
+
+
+            //File Instance methods - only checks security settings of user once
+            var fileInfo = new FileInfo(path);
+            fileInfo.CopyTo(path);
+            fileInfo.Delete();
+            if (fileInfo.Exists)
             {
-                Console.WriteLine(duplicates(numberList));
+                //Do something
             }
 
-        }
 
-        public static string duplicates(string text)
-        {
-            if (text.Split(',').Distinct().Count() != text.Split(',').Length)
-            {
-                return "Duplicates";
-            }
-            return "No Duplicates";
-        }
 
-        public static string isConsecutive(string text)
-        {
-            var consecString = new StringBuilder(text);
-            consecString.Replace("-", string.Empty);
-            var numbers = consecString.ToString();
-            var firstNumber = Convert.ToInt16(numbers[0]);
-            var count = 1;
-            for (int i = 1; i < numbers.Length; i++)
-            {
-                var n = Convert.ToInt16(numbers[i]);
-                if (n != (firstNumber + count))
-                {
-                    return "NOT CONSECUTIVE";
-                }
-                if (count == numbers.Length - 1)
-                {
-                    return "ALL CONSECUTIVE";
-                }
-                count++;
-            }
-            return "";
         }
-
-        public static string reverseName(string text)
-        {
-            var array = new char[text.Length];
-            for (int i = text.Length; i > 0; i--)
-            {
-                array[text.Length - i] = text[i - 1];
-            }
-            return new string(array);
-        }
-        
-
     }
 }
 
